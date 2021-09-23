@@ -35,5 +35,5 @@ Route::prefix('admin')->namespace('Admin')->group(function () {
     /* Route::get('users', function () {
         // Matches The "/admin/users" URL
     }); */
-// min 31
+
 });
