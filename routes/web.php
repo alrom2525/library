@@ -30,10 +30,7 @@ Route::get('/','StartController@index');
 |
 */ 
 Route::prefix('admin')->namespace('Admin')->group(function () {
-    Route::get('permission','PermissionController@index');
-
-    /* Route::get('users', function () {
-        // Matches The "/admin/users" URL
-    }); */
-
+     // Matches the "/admin/" URL
+    Route::resource('permission','PermissionController');
+    Route::resource('menu','MenuController');
 });

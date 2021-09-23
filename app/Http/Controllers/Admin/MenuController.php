@@ -1,20 +1,20 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
-use App\Http\Controllers\Controller;
-use App\Models\Admin\Permission;
-use Illuminate\Http\Request;
 
-class PermissionController extends Controller
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+
+class MenuController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index() {
-        $permissions = Permission::orderBy('id')->get();
-        return view('admin.permission.index', compact('permissions'));
+    public function index()
+    {
+        //
     }
 
     /**
@@ -24,7 +24,7 @@ class PermissionController extends Controller
      */
     public function create()
     {
-        
+        return view('admin.menu.create');
     }
 
     /**
