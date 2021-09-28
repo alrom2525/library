@@ -12,7 +12,7 @@
                 <h3>Create menus</h3>
             </div>
             <div class="box-body">
-                form
+                form will be here
             </div>
         </div>
     </div>
