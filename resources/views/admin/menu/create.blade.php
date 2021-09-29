@@ -1,21 +1,34 @@
 @extends("theme.$theme.layout")
 
-@section('title')
-    System menu 
+@section('head-title')
+    Library
+@endsection
+
+@section('page-title')
+ Create menus
 @endsection
 
 @section('content')
-<div class="row">
-    <div class="col-lg-12">
-        <div class="box box-danger">
-            <div class="box-header with-border">
-                <h3>Create menus</h3>
-            </div>
-            <div class="box-body">
-                form will be here
-            </div>
-        </div>
+
+<!-- Horizontal Form -->
+<div class="card card-info">
+    <div class="card-header">
+      <h3 class="card-title">Horizontal Form</h3>
     </div>
-</div>
-    
+    <!-- /.card-header -->
+    <!-- form start -->
+    <form action="{{route('menu.store')}}" method="POST" id="general-form" class="form-horizontal">
+      @csrf 
+      <div class="card-body">
+        @include('admin.menu.form')
+      </div>
+      <!-- /.card-body -->
+      <div class="card-footer">
+            @include('includes.form-button-create')
+      </div>
+      <!-- /.card-footer -->
+    </form>
+  </div>
+  <!-- /.card -->
+
 @endsection
