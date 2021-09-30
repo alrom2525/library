@@ -16,7 +16,8 @@ class MenuController extends Controller
      */
     public function index()
     {
-        //
+        $menus = Menu::getMenu();
+        return view('admin.menu.index', compact('menus'));
     }
 
     /**
@@ -40,6 +41,24 @@ class MenuController extends Controller
         Menu::create($request->all());
         return redirect('admin/menu/create')->with('message', 'Menu créé avec succès');
     }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function storeOrder(Request $request)
+    {   
+        if ($request->ajax()) {
+            $menu = new Menu;
+            $menu->storeOrder($request->menu);
+            return response()->json(['answer' => 'ok']);
+        } else {
+            abort(404);
+        }
+    }
+    
 
     /**
      * Display the specified resource.

@@ -13,10 +13,11 @@
   <link rel="stylesheet" href="{{asset("assets/$theme/plugins/overlayScrollbars/css/OverlayScrollbars.min.css")}}">
   <!-- Theme style -->
   <link rel="stylesheet" href="{{asset("assets/$theme/dist/css/adminlte.min.css")}}">
+  
+  @yield('styles')
+
   <!-- Custom css -->
   <link rel="stylesheet" href="{{asset("assets/css/custom.css")}}">
-
-  @yield('styles')
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <!-- Site wrapper -->
