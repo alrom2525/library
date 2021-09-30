@@ -5,7 +5,7 @@
 @endsection
 
 @section("scripts")
-<script src="{{asset("assets/pages/scripts/admin/create.js")}}" type="text/javascript"></script>
+<script src="{{asset("assets/pages/scripts/admin/menu/create.js")}}" type="text/javascript"></script>
 @endsection
 
 @section('page-title')
@@ -25,7 +25,7 @@
     <!-- /.card-header -->
 
     <!-- form start -->
-    <form id="general-form" action="{{route('menu.store')}}" method="POST" class="form-horizontal">
+    <form id="general-form" action="{{route('menu.store')}}" method="POST" class="form-horizontal" autocomplete="off">
       @csrf 
       <div class="card-body">
         @include('admin.menu.form')
