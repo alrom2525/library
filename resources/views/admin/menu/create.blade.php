@@ -4,6 +4,10 @@
     Library
 @endsection
 
+@section("scripts")
+<script src="{{asset("assets/pages/scripts/admin/create.js")}}" type="text/javascript"></script>
+@endsection
+
 @section('page-title')
  Create menus
 @endsection
@@ -16,12 +20,12 @@
 <!-- Horizontal Form -->
 <div class="card card-info">
     <div class="card-header">
-      <h3 class="card-title">Horizontal Form</h3>
+      <h3 class="card-title"><a href="https://fontawesome.com/v5.0/icons?d=gallery&p=2&m=free" target="_blank">Icon list</a></h3>
     </div>
     <!-- /.card-header -->
 
     <!-- form start -->
-    <form action="{{route('menu.store')}}" method="POST" id="general-form" class="form-horizontal">
+    <form id="general-form" action="{{route('menu.store')}}" method="POST" class="form-horizontal">
       @csrf 
       <div class="card-body">
         @include('admin.menu.form')
