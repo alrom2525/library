@@ -32,8 +32,6 @@ Route::prefix('admin')->namespace('Admin')->group(function () {
      // Matches the "/admin/" URL
     Route::resource('permission','PermissionController');
     Route::resource('menu','MenuController');
-    //Route::get('menu','MenuController@index')->name('menu.index');
-    //Route::get('menu/create','MenuController@create')->name('menu.create');
-    //Route::post('menu','MenuController@store')->name('menu.store');
-    Route::post('menu/store-order','MenuController@storeOrder')->name('menu.store-order');   
+    Route::post('menu/store-order','MenuController@storeOrder')->name('menu.store-order');
+    Route::resource('role','RoleController');
 });

@@ -1,5 +1,5 @@
 @if (session('message'))
-    <div class="alert bg-teal alert-dismissible">
+    <div class="alert bg-teal alert-dismissible" data-auto-dismiss="3000">
         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
         <h5><i class="icon fas fa-check"></i> Messages système :</h5>
         <ul>

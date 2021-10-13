@@ -13,6 +13,8 @@
   <link rel="stylesheet" href="{{asset("assets/$theme/plugins/overlayScrollbars/css/OverlayScrollbars.min.css")}}">
   <!-- Theme style -->
   <link rel="stylesheet" href="{{asset("assets/$theme/dist/css/adminlte.min.css")}}">
+  <!-- Toastr a Javascript library for non-blocking notifications -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
   
   @yield('styles')
 
@@ -84,18 +86,15 @@
 <!-- jquery-validation -->
 <script src="{{asset("assets/$theme/plugins/jquery-validation/jquery.validate.min.js")}}"></script>
 <script src="{{asset("assets/$theme/plugins/jquery-validation/localization/messages_fr.min.js")}}"></script>
-<script src="{{asset("assets/$theme/plugins/jquery-validation/localization/additional-methods.min.js")}}"></script>
+<script src="{{asset("assets/$theme/plugins/jquery-validation/additional-methods.min.js")}}"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 <script src="{{asset("assets/js/functions.js")}}"></script>
 @yield('scripts')
 
 <!-- Page specific script -->
 <script>
   $(function () {
-    /*$.validator.setDefaults({
-      submitHandler: function () {
-        alert( "Form successful submitted!" );
-      }
-    });*/
     $('#general-form').validate({
       rules: {
         email: {
