@@ -34,4 +34,6 @@ Route::prefix('admin')->namespace('Admin')->group(function () {
     Route::resource('menu','MenuController');
     Route::post('menu/store-order','MenuController@storeOrder')->name('menu.store-order');
     Route::resource('role','RoleController');
+    Route::get('menu-role','MenuRoleController@index')->name('menu-role.index');
+    Route::post('menurole','MenuRoleController@store')->name('menurole.store');
 });

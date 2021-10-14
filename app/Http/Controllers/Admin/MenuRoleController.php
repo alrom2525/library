@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Admin\Menu;
+use App\Models\Admin\Role;
 
 class MenuRoleController extends Controller
 {
@@ -14,7 +16,10 @@ class MenuRoleController extends Controller
      */
     public function index()
     {
-        //
+        $roles = Role::orderBy('id')->pluck('name','id')->toArray();
+        $menus = Menu::getMenu();
+        $menusRoles = Menu::with('roles')->get()->pluck('roles','id')->toArray();
+        return view('admin.menu-role.index',compact('roles', 'menus', 'menusRoles'));
     }
 
     /**
@@ -35,7 +40,19 @@ class MenuRoleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
+       if ($request->ajax()) {
+            $menus = new Menu();
+            if ($request->input('status') == 1) {
+                $menus->find($request->input('menu_id'))->roles()->attach($request->input('role_id'));
+                return response()->json(['response' => 'Le menu a été assigné correctement ']);
+            } else {
+                $menus->find($request->input('menu_id'))->roles()->detach($request->input('role_id'));
+                return response()->json(['response' => 'Le menu a été supprimé de ce rôle']);
+            }
+        } else {
+            abort(404);
+        }
     }
 
     /**

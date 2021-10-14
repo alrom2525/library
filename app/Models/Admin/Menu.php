@@ -11,6 +11,10 @@ class Menu extends Model
     ];
     protected $guarded = ['id'];
 
+    public function roles(){
+        return $this->belongsToMany(Role::class, 'menu_role');
+    }
+    
     public function getChildren($parents, $line)
     {
         $children = [];

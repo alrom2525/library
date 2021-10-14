@@ -13,29 +13,30 @@ Créer des rôles
 @include('includes.form-errors')
 @include('includes.form-messages')
 
-<!-- Horizontal Form -->
-<div class="card card-info">
-    <div class="card-header">
-      <h3 class="card-title"></h3>
-      <div class="card-tools">
-        
+<div class="mx-5">
+  <!-- Horizontal Form -->
+  <div class="card card-info">
+      <div class="card-header">
+        <h3 class="card-title"></h3>
+        <div class="card-tools">
+          
+        </div>
       </div>
+      <!-- /.card-header -->
+      
+      <!-- form start -->
+      <form id="general-form" action="{{route('role.store')}}" method="POST" class="form-horizontal" autocomplete="off">
+        @csrf 
+        <div class="card-body">
+          @include('admin.role.form')
+        </div>
+        <!-- /.card-body -->
+        <div class="card-footer">
+              @include('includes.form-button-create')
+        </div>
+        <!-- /.card-footer -->
+      </form>
     </div>
-    <!-- /.card-header -->
-    
-    <!-- form start -->
-    <form id="general-form" action="{{route('role.store')}}" method="POST" class="form-horizontal" autocomplete="off">
-      @csrf 
-      <div class="card-body">
-        @include('admin.role.form')
-      </div>
-      <!-- /.card-body -->
-      <div class="card-footer">
-            @include('includes.form-button-create')
-      </div>
-      <!-- /.card-footer -->
-    </form>
-  </div>
-  <!-- /.card -->
-
+    <!-- /.card -->
+</div>
 @endsection
