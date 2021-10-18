@@ -15,7 +15,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/admin';
+    protected $redirectTo = '/';
 
     /**
      * Create a new controller instance.
@@ -37,15 +37,16 @@ class LoginController extends Controller
         return view('auth.login');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    protected function authenticated(Request $request, $user)
     {
-        
+        $roles = $user->roles()->where('status', 1)->get();
+        if ($roles->isNotEmpty()) {
+            $user->setSession($roles->toArray());
+        } else {
+            $this->guard()->logout();
+            $request->session()->invalidate();
+            return redirect('auth/login')->withErrors(['error' => "Cet utilisateur n'a pas de rôle actif"]);
+        }
     }
 
     /**
