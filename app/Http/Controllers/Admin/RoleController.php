@@ -15,9 +15,10 @@ class RoleController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
+    {   
         $roles = Role::orderBy('id')->get();
-        return view('admin.role.index', compact('roles'));
+        $cancelRoute = route('role.index');
+        return view('admin.role.index', compact('roles','cancelRoute'));
     }
 
     /**
@@ -26,8 +27,9 @@ class RoleController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
-        return view('admin.role.create');
+    {    
+        $cancelRoute = route('role.index');
+        return view('admin.role.create', compact('cancelRoute'));
     }
 
     /**
@@ -62,7 +64,8 @@ class RoleController extends Controller
     public function edit($id)
     {
         $role = Role::findOrFail($id);
-        return view('admin.role.edit', compact('role'));
+        $cancelRoute = route('role.index');
+        return view('admin.role.edit', compact('role','cancelRoute'));
     }
 
     /**

@@ -2,8 +2,9 @@
 
 namespace App\Http\Requests;
 
-use App\Rules\Url;
+use App\Rules\menuUrl;
 use Illuminate\Foundation\Http\FormRequest;
+
 
 class StoreMenu extends FormRequest
 {
@@ -26,7 +27,7 @@ class StoreMenu extends FormRequest
     {
         return [
             'name' => 'required|max:50|unique:menus,name,' . $this->route('id'),
-            'url'  => ['required','max:200', new Url],
+            'url'  => ['required','max:200', new menuUrl],
             'icon' => 'nullable|max:100',
         ];
     }

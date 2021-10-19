@@ -5,7 +5,7 @@ namespace App\Rules;
 use App\Models\Admin\Menu;
 use Illuminate\Contracts\Validation\Rule;
 
-class Url implements Rule
+class menuUrl implements Rule
 {
     /**
      * Create a new rule instance.
@@ -25,9 +25,9 @@ class Url implements Rule
      * @return bool
      */
     public function passes($attribute, $value)
-    {
+    {  
         if($value != '#'){
-            $menu = Menu::where($attribute, $value)->get();
+            $menu = Menu::where($attribute, $value)->where('id', '!=', request()->route('id'))->get();
             return $menu->isEmpty();
         }
         return true;

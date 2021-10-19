@@ -26,8 +26,8 @@ class MenuController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
-        return view('admin.menu.create');
+    {   $cancelRoute = route('menu.index');
+        return view('admin.menu.create', compact('cancelRoute'));
     }
 
     /**
@@ -59,7 +59,6 @@ class MenuController extends Controller
         }
     }
     
-
     /**
      * Display the specified resource.
      *
@@ -68,7 +67,7 @@ class MenuController extends Controller
      */
     public function show($id)
     {
-        //
+        return "from show";
     }
 
     /**
@@ -78,8 +77,10 @@ class MenuController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
-    {
-        //
+    {   
+        $menu = Menu::findOrFail($id);
+        $cancelRoute = route('menu.index');
+        return view('admin.menu.edit', compact('menu', 'cancelRoute'));
     }
 
     /**
@@ -90,8 +91,9 @@ class MenuController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
-    {
-        //
+    {   
+        Menu::findOrFail($id)->update($request->all());
+        return redirect('admin/menu')->with('message', 'Menu modifié avec succès');
     }
 
     /**
@@ -100,8 +102,18 @@ class MenuController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
-        //
+    public function destroy(Request $request, $id)
+    {   
+        //Menu::destroy($id);
+        //return redirect('admin/menu')->with('message', 'Menu supprimé avec succès');
+        if ($request->ajax()) {
+            if (Menu::destroy($id)) {
+                return response()->json(['message' => 'ok']);
+            } else {
+                return response()->json(['message' => 'ng']);
+            }
+        } else {
+            abort(404);
+        }
     }
 }

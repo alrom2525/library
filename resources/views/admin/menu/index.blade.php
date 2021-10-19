@@ -9,12 +9,20 @@
     <script src="{{asset("assets/pages/scripts/admin/menu/index.js")}}" type="text/javascript"></script>
 @endsection
 
+@section('page-title')
+Menus
+@endsection
+
 @section('content')
 @include('includes.form-messages')
-<div class="mx-5">
+<div class="mx-5 pb-4">
     <div class="card card-info">
         <div class="card-header">
-            <h5>Menus</h5>
+            <div class="card-tools">
+                <a href="{{route('menu.create')}}" class="btn btn-tool bg-dark p-2 m-1">
+                  <i class="fas fa-plus-square p-1"></i> Ajouter menu
+                </a>
+              </div>
         </div>
         <!-- /.card-header -->
         <div class="box-body">
@@ -50,5 +58,10 @@
         <li>Cliquez sur l'icône grise d'un élément de menu et faites-la glisser vers le haut ou vers le bas</li>
         <li>Si vous voulez créer un sous-menu, faites-la glisser vers la droite ou la gauche</li>
     </ul>
+    
+    <p>
+        Pour éditer un menu il suffit de cliquer dessus
+    </p>
 </div>
+
 @endsection

@@ -7,7 +7,7 @@
                 </button>
             </div>
             <div class="p-2">
-                <a  class="btn btn-secondary float-right" href="{{ url()->previous() }}">
+                <a  class="btn btn-secondary float-right" href="{{ $cancelRoute }}">
                     <i class="fas fa-undo p-1"></i>Annuler
                 </a>
             </div>
