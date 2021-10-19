@@ -104,8 +104,6 @@ class MenuController extends Controller
      */
     public function destroy(Request $request, $id)
     {   
-        //Menu::destroy($id);
-        //return redirect('admin/menu')->with('message', 'Menu supprimé avec succès');
         if ($request->ajax()) {
             if (Menu::destroy($id)) {
                 return response()->json(['message' => 'ok']);
