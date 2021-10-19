@@ -39,7 +39,7 @@ class MenuController extends Controller
     public function store(StoreMenu $request)
     {
         Menu::create($request->all());
-        return redirect('admin/menu/create')->with('message', 'Menu créé avec succès');
+        return redirect('admin/menu')->with('message', 'Menu créé avec succès');
     }
 
     /**

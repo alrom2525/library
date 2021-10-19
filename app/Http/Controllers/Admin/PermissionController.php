@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ValidatePermission;
 use App\Models\Admin\Permission;
 use Illuminate\Http\Request;
 
@@ -14,7 +15,7 @@ class PermissionController extends Controller
      */
     public function index() {
         $permissions = Permission::orderBy('id')->get();
-        return view('admin.permission.index', compact('permissions'));
+        return view('admin.permission.index', compact('permissions','cancelRoute'));
     }
 
     /**
@@ -23,8 +24,9 @@ class PermissionController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
-        
+    {   
+        $cancelRoute = route('permission.index');
+        return view('admin.permission.create', compact('cancelRoute'));
     }
 
     /**
@@ -33,9 +35,10 @@ class PermissionController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ValidatePermission $request)
     {
-        //
+        Permission::create($request->all());
+        return redirect('admin/permission')->with('message', 'Autorisation créé avec succès');
     }
 
     /**
@@ -57,7 +60,9 @@ class PermissionController extends Controller
      */
     public function edit($id)
     {
-        //
+        $permission = Permission::findOrFail($id);
+        $cancelRoute = route('permission.index');
+        return view('admin.permission.edit', compact('permission','cancelRoute'));
     }
 
     /**
@@ -67,9 +72,10 @@ class PermissionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ValidatePermission $request, $id)
     {
-        //
+        Permission::findOrFail($id)->update($request->all());
+        return redirect('admin/permission')->with('message', 'Autorisation modifié avec succès');
     }
 
     /**
@@ -78,8 +84,16 @@ class PermissionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
-        //
+        if ($request->ajax()) {
+            if (Permission::destroy($id)) {
+                return response()->json(['message' => 'ok']);
+            } else {
+                return response()->json(['message' => 'ng']);
+            }
+        } else {
+            abort(404);
+        }
     }
 }
