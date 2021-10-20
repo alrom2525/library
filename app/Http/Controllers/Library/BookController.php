@@ -1,13 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Library;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\Admin\Menu;
-use App\Models\Admin\Role;
+use App\Models\Library\Book;
 
-class MenuRoleController extends Controller
+class BookController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,11 +14,10 @@ class MenuRoleController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        $roles = Role::orderBy('id')->pluck('name','id')->toArray();
-        $menus = Menu::getMenu();
-        $menusRoles = Menu::with('roles')->get()->pluck('roles','id')->toArray();
-        return view('admin.menu-role.index',compact('roles', 'menus', 'menusRoles'));
+    {   
+        can('view-books');
+        $books = Book::orderBy('id')->get();
+        return view('library.book.index', compact('books'));
     }
 
     /**
@@ -39,19 +37,8 @@ class MenuRoleController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    { 
-       if ($request->ajax()) {
-            $menus = new Menu();
-            if ($request->input('status') == 1) {
-                $menus->find($request->input('menu_id'))->roles()->attach($request->input('role_id'));
-                return response()->json(['response' => 'Le menu a été assigné correctement ']);
-            } else {
-                $menus->find($request->input('menu_id'))->roles()->detach($request->input('role_id'));
-                return response()->json(['response' => 'Le menu a été supprimé de ce rôle']);
-            }
-        } else {
-            abort(404);
-        }
+    {
+        //
     }
 
     /**

@@ -4,10 +4,10 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\Admin\Menu;
+use App\Models\Admin\Permission;
 use App\Models\Admin\Role;
 
-class MenuRoleController extends Controller
+class PermissionRoleController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,10 +16,10 @@ class MenuRoleController extends Controller
      */
     public function index()
     {
-        $roles = Role::orderBy('id')->pluck('name','id')->toArray();
-        $menus = Menu::getMenu();
-        $menusRoles = Menu::with('roles')->get()->pluck('roles','id')->toArray();
-        return view('admin.menu-role.index',compact('roles', 'menus', 'menusRoles'));
+        $roles = Role ::orderBy('id')->pluck('name','id')->toArray();
+        $permissions = Permission::get();
+        $permissionsRoles = Permission::with('roles')->get()->pluck('roles', 'id')->toArray();
+        return view('admin.permission-role.index', compact('roles', 'permissions', 'permissionsRoles'));
     }
 
     /**
@@ -39,15 +39,15 @@ class MenuRoleController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    { 
-       if ($request->ajax()) {
-            $menus = new Menu();
+    {
+        if ($request->ajax()) {
+            $permissions = new Permission();
             if ($request->input('status') == 1) {
-                $menus->find($request->input('menu_id'))->roles()->attach($request->input('role_id'));
-                return response()->json(['response' => 'Le menu a été assigné correctement ']);
+                $permissions->find($request->input('permission_id'))->roles()->attach($request->input('role_id'));
+                return response()->json(['response' => "L'autorisation a été assigné correctement "]);
             } else {
-                $menus->find($request->input('menu_id'))->roles()->detach($request->input('role_id'));
-                return response()->json(['response' => 'Le menu a été supprimé de ce rôle']);
+                $permissions->find($request->input('permission_id'))->roles()->detach($request->input('role_id'));
+                return response()->json(['response' => "L'autorisation a été supprimé de ce rôle"]);
             }
         } else {
             abort(404);

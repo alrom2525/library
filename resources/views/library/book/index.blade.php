@@ -5,7 +5,7 @@
 @endsection
 
 @section('page-title')
-Rôles
+Livres
 @endsection
 
 @section('content')
@@ -16,8 +16,8 @@ Rôles
     <div class="card-header">
         <h3 class="card-title"></h3>
         <div class="card-tools">
-          <a href="{{route('role.create')}}" class="btn btn-tool bg-dark p-2 m-1">
-            <i class="fas fa-plus-square p-1"></i> Ajouter rôle
+          <a href="{{route('book.create')}}" class="btn btn-tool bg-dark p-2 m-1">
+            <i class="fas fa-plus-square p-1"></i> Ajouter livre
           </a>
         </div>
     </div>
@@ -28,20 +28,20 @@ Rôles
       <table id="table-data" class="table table-hover text-nowrap">
         <thead>
           <tr>
-            <th>Nom de rôle</th>
+            <th>Titre de livre</th>
             <th></th>
           </tr>
         </thead>
         <tbody>
-      @foreach ($roles as $role)
+      @foreach ($books as $book)
           <tr>
-              <td>{{$role->name}}</td>
+              <td>{{$book->title}}</td>
               <td class="text-right py-0 align-middle"> 
                 <div class="btn-group btn-group-sm">
-                <a  href="{{ route('role.edit', ['id' => $role->id]) }}" data-toggle="tooltip" 
+                <a  href="{{ route('book.edit', ['id' => $book->id]) }}" data-toggle="tooltip" 
                     data-placement="bottom" title="Editer" class="btn-action-table"><i class="far fa-edit p-1"></i>
                 </a>
-                <form action="{{route('role.destroy', ['id' => $role->id] )}}" method="post" class="d-inline form-destroy">
+                <form action="{{route('book.destroy', ['id' => $book->id] )}}" method="post" class="d-inline form-destroy">
                   @csrf @method('delete')
                   <button type="submit" data-toggle="tooltip" title="Supprimer" class="btn-action-table"><i class="fas fa-trash-alt"></i></button>
                 </form>

@@ -70,7 +70,7 @@ class AdminSeeder extends Seeder
         DB::table('menus')->insert([
             'parent_menu' => 1,
             'name' => 'Menus par rôles',
-            'url' => 'admin/menu-role',
+            'url' => 'admin/menurole',
             'order' => 3,
             'icon' => 'fa-user-cog',
             'created_at' => Carbon::now()->format('Y-m-d H:i:s')
@@ -88,7 +88,7 @@ class AdminSeeder extends Seeder
         DB::table('menus')->insert([
             'parent_menu' => 1,
             'name' => 'Autorisations par Rôle',
-            'url' => 'admin/permission-role',
+            'url' => 'admin/permissionrole',
             'order' => 5,
             'created_at' => Carbon::now()->format('Y-m-d H:i:s')
         ]);
@@ -102,6 +102,97 @@ class AdminSeeder extends Seeder
             'created_at' => Carbon::now()->format('Y-m-d H:i:s')
         ]);
         
+        DB::table('menus')->insert([
+            'parent_menu' => 0,
+            'name' => 'Books',
+            'url' => 'library/book',
+            'order' => 3,
+            'icon' => 'fa-book',
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s')
+        ]);
+
+        DB::table('menu_role')->insert([
+            'role_id' => 1,
+            'menu_id' => 1
+        ]);
         
+        DB::table('menu_role')->insert([
+            'role_id' => 1,
+            'menu_id' => 2
+        ]);
+
+        DB::table('menu_role')->insert([
+            'role_id' => 1,
+            'menu_id' => 3
+        ]);
+
+        DB::table('menu_role')->insert([
+            'role_id' => 1,
+            'menu_id' => 4
+        ]);
+
+        DB::table('menu_role')->insert([
+            'role_id' => 1,
+            'menu_id' => 5
+        ]);
+
+        DB::table('menu_role')->insert([
+            'role_id' => 1,
+            'menu_id' => 6
+        ]);
+
+        DB::table('menu_role')->insert([
+            'role_id' => 1,
+            'menu_id' => 7
+        ]);
+
+        DB::table('menu_role')->insert([
+            'role_id' => 1,
+            'menu_id' => 8
+        ]);
+
+        DB::table('permissions')->insert([
+            'name' => 'Create books',
+            'slug' => 'create-books',
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s')
+        ]);
+
+        DB::table('permissions')->insert([
+            'name' => 'Edit books',
+            'slug' => 'edit-books',
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s')
+        ]);
+
+        DB::table('permissions')->insert([
+            'name' => 'Delete books',
+            'slug' => 'delete-books',
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s')
+        ]);
+
+        DB::table('permissions')->insert([
+            'name' => 'View books',
+            'slug' => 'view-books',
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s')
+        ]);
+        
+        DB::table('permission_role')->insert([
+            'role_id' => 1,
+            'permission_id' => 1
+        ]);
+
+        DB::table('permission_role')->insert([
+            'role_id' => 1,
+            'permission_id' => 2
+        ]);
+
+        DB::table('permission_role')->insert([
+            'role_id' => 1,
+            'permission_id' => 3
+        ]);
+
+        DB::table('permission_role')->insert([
+            'role_id' => 1,
+            'permission_id' => 4
+        ]);
     }
 }
