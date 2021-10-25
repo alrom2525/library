@@ -43,5 +43,5 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['aut
     Route::post('menu/store-order','MenuController@storeOrder')->name('menu.store-order');
     Route::resource('menurole','MenuRoleController');
     Route::resource('role','RoleController');
+    Route::resource('user','UserController');
 });
- 

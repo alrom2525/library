@@ -21,9 +21,7 @@ class AdminSeeder extends Seeder
         
         DB::table('user_role')->insert([
             'role_id' => 1,
-            'user_id' => 1,
-            'status' => 1,
-            'created_at' => Carbon::now()->format('Y-m-d H:i:s')
+            'user_id' => 1
         ]);
 
         DB::table('users')->insert([
@@ -35,9 +33,7 @@ class AdminSeeder extends Seeder
 
         DB::table('user_role')->insert([
             'role_id' => 2,
-            'user_id' => 2,
-            'status' => 1,
-            'created_at' => Carbon::now()->format('Y-m-d H:i:s')
+            'user_id' => 2
         ]);
         
         DB::table('menus')->insert([
@@ -94,10 +90,10 @@ class AdminSeeder extends Seeder
         ]);
         
         DB::table('menus')->insert([
-            'parent_menu' => 0,
+            'parent_menu' => 1,
             'name' => 'Utilisateurs',
             'url' => 'admin/user',
-            'order' => 2,
+            'order' => 6,
             'icon' => 'fa-user',
             'created_at' => Carbon::now()->format('Y-m-d H:i:s')
         ]);
@@ -106,7 +102,7 @@ class AdminSeeder extends Seeder
             'parent_menu' => 0,
             'name' => 'Books',
             'url' => 'library/book',
-            'order' => 3,
+            'order' => 2,
             'icon' => 'fa-book',
             'created_at' => Carbon::now()->format('Y-m-d H:i:s')
         ]);

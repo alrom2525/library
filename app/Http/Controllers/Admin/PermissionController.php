@@ -15,7 +15,7 @@ class PermissionController extends Controller
      */
     public function index() {
         $permissions = Permission::orderBy('id')->get();
-        return view('admin.permission.index', compact('permissions','cancelRoute'));
+        return view('admin.permission.index', compact('permissions'));
     }
 
     /**

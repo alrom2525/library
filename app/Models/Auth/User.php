@@ -5,6 +5,7 @@ namespace App\Models\Auth;
 use App\Models\Admin\Role;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 
 class User extends Authenticatable
@@ -17,8 +18,6 @@ class User extends Authenticatable
     protected $fillable = [
         'name', 'email', 'password',
     ];
-    
-    protected $guarded = ['id'];
 
     /**
      * The attributes that should be hidden for arrays.
@@ -56,5 +55,10 @@ class User extends Authenticatable
                 ]
                 );
         }
+    }
+
+    public function setPasswordAttribute($pass)
+    {
+        $this->attributes['password'] = Hash::make($pass); 
     }
 }
