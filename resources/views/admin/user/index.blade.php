@@ -28,6 +28,7 @@
             <th style="width: 10px">#</th>
             <th>Nom d'utilisateur</th>
             <th>Adresse de courriel</th>
+            <th>Rôles</th>
             <th style="width: 50px">Action</th>
           </tr>
         </thead>
@@ -37,6 +38,11 @@
                 <td>{{ $user->id }}</td>
                 <td>{{ $user->name }}</td>
                 <td>{{ $user->email }}</td>
+                <td>  
+                    @foreach ($user->roles as $role)
+                    {{ $loop->last ? $role->name : $role->name . ', '}}
+                    @endforeach 
+                </td>
                 <td class="text-right py-0 align-middle"> 
                   <div class="btn-group btn-group-sm">
                   <a  href="{{ route('user.edit', ['id' => $user->id]) }}" data-toggle="tooltip" 

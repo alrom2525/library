@@ -29,10 +29,14 @@
 <div class="form-group row">
   <label for="role" class="col-sm-2 col-form-label required">Sélectionnez le rôle</label>
   <div class="col-sm-4">
-    <select name="role_id" id="role_id" class="form-control" required>
-      <option value="">Sélectionnez le rôle</option>
+    <select name="role_id[]" id="role_id" class="form-control" multiple required>
       @foreach($roles as $id => $name)
-          <option value="{{$id}}" {{old("role_id", $user->roles[0]->id ?? "") == $id ? "selected" : ""}}>{{$name}}</option>
+          <option
+            value="{{$id}}"
+            {{ is_array(old('role_id')) ? (in_array($id, old('role_id')) ? 'selected' : '')  : (isset($user) ? ($user->roles->firstWhere('id', $id) ? 'selected' : '') : '')}}
+            >
+            {{$name}}
+          </option>
       @endforeach
     </select>
   </div>

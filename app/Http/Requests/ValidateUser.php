@@ -30,7 +30,7 @@ class ValidateUser extends FormRequest
                 'email' => 'required|email|max:100|unique:users,email,' . $this->route('id'),
                 'password' => 'required|min:8',
                 're_password' => 'required|min:8|same:password',
-                'role_id' => 'required|integer'
+                'role_id' => 'required|array'
             ];
         } else {
             // Creation process
@@ -39,7 +39,7 @@ class ValidateUser extends FormRequest
                 'email' => 'required|email|max:100,' . $this->route('id'),
                 'password' => 'nullable|min:8',
                 're_password' => 'nullable|required_with:password|min:8|same:password',
-                'role_id' => 'required|integer'
+                'role_id' => 'required|array'
             ];
         }
     }

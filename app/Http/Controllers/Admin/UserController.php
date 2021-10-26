@@ -17,7 +17,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::orderBy('id')->get();
+        $users = User::with('roles:id,name')->orderBy('id')->get();
         return view('admin.user.index', compact('users'));
     }
 
@@ -42,7 +42,7 @@ class UserController extends Controller
     public function store(ValidateUser $request)
     {
         $user = User::create($request->all());
-        $user->roles()->attach($request->role_id);
+        $user->roles()->sync($request->role_id);
         return redirect('admin/user')->with('message', 'Utilisateur créé avec succès');
     }
 
@@ -80,7 +80,9 @@ class UserController extends Controller
      */
     public function update(ValidateUser $request, $id)
     {
-        User::findOrFail($id)->update(array_filter($request->all()));
+        $user = User::findOrFail($id);
+        $user->update(array_filter($request->all()));
+        $user->roles()->sync($request->role_id);
         return redirect('admin/user')->with('message', 'Utilisateur modifié avec succès');
     }
 
@@ -90,8 +92,15 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
-        //
+        if ($request->ajax()) {
+            $user = User::findOrFail($id);
+            $user->roles()->detach();
+            $user->delete();
+            return response()->json(['message' => 'ok']);
+         } else {
+            abort(404);
+        }
     }
 }
