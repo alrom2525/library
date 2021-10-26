@@ -23,12 +23,24 @@ class ValidateUser extends FormRequest
      */
     public function rules()
     {
-        return [
-            'name' => 'required|max:50',
-            'email' => 'required|email|max:100|unique:users,email,' . $this->route('id'),
-            'password' => 'required|min:5',
-            're_password' => 'required|same:password',
-            'role_id' => 'required|integer'
-        ];
+        if($this->route('id')){
+            // Edition
+            return [
+                'name' => 'required|max:50',
+                'email' => 'required|email|max:100|unique:users,email,' . $this->route('id'),
+                'password' => 'required|min:8',
+                're_password' => 'required|min:8|same:password',
+                'role_id' => 'required|integer'
+            ];
+        } else {
+            // Creation process
+            return [
+                'name' => 'required|max:50',
+                'email' => 'required|email|max:100,' . $this->route('id'),
+                'password' => 'nullable|min:8',
+                're_password' => 'nullable|required_with:password|min:8|same:password',
+                'role_id' => 'required|integer'
+            ];
+        }
     }
 }

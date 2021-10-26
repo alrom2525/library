@@ -13,16 +13,16 @@
 </div>
 
 <div class="form-group row">
-  <label for="password" class="col-sm-2 col-form-label required">Mot de passe</label>
+  <label for="password" class="col-sm-2 col-form-label {{!isset($user) ? 'required' : ''}}">Mot de passe</label>
   <div class="col-sm-4">
-    <input type="password" class="form-control" id="password" name="password" placeholder="Mot de passe" value="{{old('password', $user->password ?? '')}}" required>
+    <input type="password" class="form-control" id="password" name="password" placeholder="Mot de passe" minlength="8" value="" {{!isset($user) ? 'required' : ''}} >
   </div>
 </div>
 
 <div class="form-group row">
-  <label for="re_password" class="col-sm-2 col-form-label required">Confirmez le mot de passe</label>
+  <label for="re_password" class="col-sm-2 col-form-label {{!isset($user) ? 'required' : ''}}">Confirmez le mot de passe</label>
   <div class="col-sm-4">
-    <input type="password" class="form-control" id="re_password" name="re_password" placeholder="Retaper le mot de passe" value="{{old('password', $user->password ?? '')}}" required>
+    <input type="password" class="form-control" id="re_password" name="re_password" placeholder="Retaper le mot de passe" minlength="8" value="" {{!isset($user) ? 'required' : ''}}>
   </div>
 </div>
 

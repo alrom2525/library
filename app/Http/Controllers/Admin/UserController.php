@@ -78,9 +78,9 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ValidateUser $request, $id)
     {
-        User::findOrFail($id)->update($request->all());
+        User::findOrFail($id)->update(array_filter($request->all()));
         return redirect('admin/user')->with('message', 'Utilisateur modifié avec succès');
     }
 
