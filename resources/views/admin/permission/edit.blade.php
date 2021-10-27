@@ -25,7 +25,7 @@ Editer des autorisations
       <!-- /.card-header -->
       
       <!-- form start -->
-      <form id="general-form" action="{{route('permission.update', ['id' => $permission->id])}}" method="POST" class="form-horizontal" autocomplete="off">
+      <form id="general-form" action="{{route('permission.update', $permission->id)}}" method="POST" class="form-horizontal" autocomplete="off">
         @csrf @method('put')
         <div class="card-body">
           @include('admin.permission.form')

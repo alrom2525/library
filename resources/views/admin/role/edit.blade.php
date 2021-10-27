@@ -24,7 +24,7 @@ Editer des rôles
     <!-- /.card-header -->
     
     <!-- form start -->
-    <form id="general-form" action="{{route('role.update', ['id' => $role->id])}}" method="POST" class="form-horizontal" autocomplete="off">
+    <form id="general-form" action="{{route('role.update', $role->id)}}" method="POST" class="form-horizontal" autocomplete="off">
       @csrf @method('put')
       <div class="card-body">
         @include('admin.role.form')

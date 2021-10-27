@@ -45,10 +45,10 @@
                 </td>
                 <td class="text-right py-0 align-middle"> 
                   <div class="btn-group btn-group-sm">
-                  <a  href="{{ route('user.edit', ['id' => $user->id]) }}" data-toggle="tooltip" 
+                  <a  href="{{ route('user.edit', $user->id) }}" data-toggle="tooltip" 
                       data-placement="bottom" title="Editer" class="btn-action-table"><i class="far fa-edit p-1"></i>
                   </a>
-                  <form action="{{route('user.destroy', ['id' => $user->id] )}}" method="post" class="d-inline form-destroy">
+                  <form action="{{route('user.destroy', $user->id)}}" method="post" class="d-inline form-destroy">
                     @csrf @method('delete')
                     <button type="submit" data-toggle="tooltip" title="Supprimer" class="btn-action-table"><i class="fas fa-trash-alt"></i></button>
                   </form>
