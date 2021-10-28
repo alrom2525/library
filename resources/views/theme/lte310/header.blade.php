@@ -134,28 +134,25 @@
 
         <p>
           {{ session()->get('name') ?? 'Guest' }}
-          <small>Member since Nov. 2012</small>
+          <small> {{ session()->get('role_name') }} </small>
         </p>
       </li>
       <!-- Menu Body -->
       <li class="user-body">
         <div class="row">
-          <div class="col-4 text-center">
-            <a href="#">Followers</a>
-          </div>
-          <div class="col-4 text-center">
-            <a href="#">Sales</a>
-          </div>
-          <div class="col-4 text-center">
-            <a href="#">Friends</a>
-          </div>
+          <!-- Modal window for users with more than one role -->
+          @if(session()->get("roles") && count(session()->get("roles")) > 1)
+            <div class="col-12 text-center">
+              <a href="#" class="btn btn-default btn-flat change-role">Changer de rôle</a>
+            </div>
+          @endif <!-- /.Modal window for users with more than one role -->
         </div>
         <!-- /.row -->
       </li>
       <!-- Menu Footer-->
       <li class="user-footer">
-        <a href="#" class="btn btn-default btn-flat">Profile</a>
-        <a href="{{ route('logout') }}" class="btn btn-default btn-flat float-right">Sign out</a>
+        <a href="#" class="btn btn-default btn-flat">Profil</a>
+        <a href="{{ route('logout') }}" class="btn btn-default btn-flat float-right">Déconnexion</a>
       </li>
     </ul>
   </li>

@@ -71,7 +71,7 @@
   <div class="modal fade" id="modal-select-role" data-role-set="{{empty(session()->get("role_id")) ? 'NO' : 'YES'}}" tabindex="-1" data-backdrop="static" data-keyboard="false">
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="modal-header">
+            <div class="modal-header bg-info">
                 <h4 class="modal-title">Rôles d'utilisateur</h4>
             </div>
             <div class="modal-body">
@@ -80,7 +80,7 @@
                 <div class="m-3">
                   @foreach(session()->get("roles") as $key => $role)
                       <li>
-                          <a href="#" class="asign-role" data-roleid="{{$role['id']}}" data-rolename="{{$role["name"]}}">
+                          <a href="#" class="btn btn-secondary asign-role mt-2" data-roleid="{{$role['id']}}" data-rolename="{{$role["name"]}}">
                               {{$role["name"]}}
                           </a>
                       </li>
@@ -88,7 +88,7 @@
                 </div>
             </div>
             <div class="modal-footer justify-content-between">
-              <a href="{{ route('start') }}" class="btn btn-primary"> Fermer</a>
+              <a href="{{ route('start') }}" class="btn btn-info"> Fermer</a>
             </div>
           </div>
         </div>
