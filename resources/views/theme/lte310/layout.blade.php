@@ -65,6 +65,37 @@
     @include('theme/'. $theme. '/footer');
   </footer>
 
+  <!-- Modal window for users with more than one role -->
+  @if(session()->get("roles") && count(session()->get("roles")) > 1)
+  @csrf
+  <div class="modal fade" id="modal-select-role" data-role-set="{{empty(session()->get("role_id")) ? 'NO' : 'YES'}}" tabindex="-1" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Rôles d'utilisateur</h4>
+            </div>
+            <div class="modal-body">
+                <h5>Vous avez plus d'un rôle sur la plateforme</h5>
+                <p>Sélectionnez avec lequel d'entre eux vous souhaitez vous connecter puis cliquez sur le bouton fermer</p>
+                <div class="m-3">
+                  @foreach(session()->get("roles") as $key => $role)
+                      <li>
+                          <a href="#" class="asign-role" data-roleid="{{$role['id']}}" data-rolename="{{$role["name"]}}">
+                              {{$role["name"]}}
+                          </a>
+                      </li>
+                  @endforeach
+                </div>
+            </div>
+            <div class="modal-footer justify-content-between">
+              <a href="{{ route('start') }}" class="btn btn-primary"> Fermer</a>
+            </div>
+          </div>
+        </div>
+    </div>
+  </div>
+  @endif <!-- /.Modal window for users with more than one role -->
+
   <!-- Control Sidebar -->
   <aside class="control-sidebar control-sidebar-dark">
     <!-- Control sidebar content goes here -->
@@ -89,6 +120,7 @@
 <script src="{{asset("assets/$theme/plugins/jquery-validation/additional-methods.min.js")}}"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+<script src="{{asset("assets/js/scripts.js")}}"></script>
 <script src="{{asset("assets/js/functions.js")}}"></script>
 @yield('scripts')
 

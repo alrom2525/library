@@ -23,6 +23,7 @@ Route::get('auth/login','Auth2\LoginController@index')->name('login');
 Route::post('auth/login','Auth2\LoginController@login')->name('login-post');
 Route::get('auth/logout','Auth2\LoginController@logout')->name('logout');
 Route::resource('library/book','Library\BookController');
+Route::post('setsession', 'Auth2\SessionController@setSession')->name('setsession')->middleware('auth');
 
 /*
 |--------------------------------------------------------------------------

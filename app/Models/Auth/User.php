@@ -43,17 +43,24 @@ class User extends Authenticatable
     }
 
     public function setSession($roles)
-    {
+    {   
+        Session::put(
+            [
+                'email' => $this->email,
+                'user_id' => $this->id,
+                'name'=> $this->name
+            ]
+        );
+
         if (count($roles) == 1) {
             Session::put(
                 [
                     'role_id' => $roles[0]['id'],
-                    'role_name' => $roles[0]['name'],
-                    'email' => $this->email,
-                    'user_id' => $this->id,
-                    'name'=> $this->name
+                    'role_name' => $roles[0]['name']
                 ]
-                );
+            );
+        } else {
+            Session::put('roles', $roles);
         }
     }
 
