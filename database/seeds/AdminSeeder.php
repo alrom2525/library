@@ -38,15 +38,24 @@ class AdminSeeder extends Seeder
         
         DB::table('menus')->insert([
             'parent_menu' => 0,
+            'name' => 'Tableau de bord',
+            'url' => 'home',
+            'order' => 1,
+            'icon' => 'fa-tachometer-alt',
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s')
+        ]);
+
+        DB::table('menus')->insert([
+            'parent_menu' => 0,
             'name' => 'Admin',
             'url' => 'admin',
-            'order' => 1,
+            'order' => 2,
             'icon' => 'fa-cog',
             'created_at' => Carbon::now()->format('Y-m-d H:i:s')
         ]);
 
         DB::table('menus')->insert([
-            'parent_menu' => 1,
+            'parent_menu' => 2,
             'name' => 'Rôles',
             'url' => 'admin/role',
             'order' => 1,
@@ -55,7 +64,7 @@ class AdminSeeder extends Seeder
         ]);
         
         DB::table('menus')->insert([
-            'parent_menu' => 1,
+            'parent_menu' => 2,
             'name' => 'Menus',
             'url' => 'admin/menu',
             'order' => 2,
@@ -64,7 +73,7 @@ class AdminSeeder extends Seeder
         ]);
 
         DB::table('menus')->insert([
-            'parent_menu' => 1,
+            'parent_menu' => 2,
             'name' => 'Menus par rôles',
             'url' => 'admin/menurole',
             'order' => 3,
@@ -73,7 +82,7 @@ class AdminSeeder extends Seeder
         ]);
 
         DB::table('menus')->insert([
-            'parent_menu' => 1,
+            'parent_menu' => 2,
             'name' => 'Autorisations',
             'url' => 'admin/permission',
             'order' => 4,
@@ -82,7 +91,7 @@ class AdminSeeder extends Seeder
         ]);
 
         DB::table('menus')->insert([
-            'parent_menu' => 1,
+            'parent_menu' => 2,
             'name' => 'Autorisations par Rôle',
             'url' => 'admin/permissionrole',
             'order' => 5,
@@ -90,7 +99,7 @@ class AdminSeeder extends Seeder
         ]);
         
         DB::table('menus')->insert([
-            'parent_menu' => 1,
+            'parent_menu' => 2,
             'name' => 'Utilisateurs',
             'url' => 'admin/user',
             'order' => 6,
@@ -102,7 +111,7 @@ class AdminSeeder extends Seeder
             'parent_menu' => 0,
             'name' => 'Books',
             'url' => 'library/book',
-            'order' => 2,
+            'order' => 3,
             'icon' => 'fa-book',
             'created_at' => Carbon::now()->format('Y-m-d H:i:s')
         ]);
@@ -147,6 +156,11 @@ class AdminSeeder extends Seeder
             'menu_id' => 8
         ]);
 
+        DB::table('menu_role')->insert([
+            'role_id' => 1,
+            'menu_id' => 9
+        ]);
+
         DB::table('permissions')->insert([
             'name' => 'Create books',
             'slug' => 'create-books',
@@ -189,6 +203,11 @@ class AdminSeeder extends Seeder
         DB::table('permission_role')->insert([
             'role_id' => 1,
             'permission_id' => 4
+        ]);
+
+        DB::table('menu_role')->insert([
+            'role_id' => 2,
+            'menu_id' => 1
         ]);
     }
 }

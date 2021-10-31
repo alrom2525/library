@@ -26,13 +26,13 @@
 <div class="wrapper">
   <!-- Navbar -->
   <nav class="main-header navbar navbar-expand navbar-white navbar-light">
-    @include("theme/$theme/header");
+    @include("theme/$theme/header")
   </nav>
   <!-- /.navbar -->
   
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
-    @include("theme/$theme/aside");
+    @include("theme/$theme/aside")
   </aside>
 
   <!-- Content Wrapper. Contains page content -->
@@ -62,7 +62,7 @@
   <!-- /.content-wrapper -->
 
   <footer class="main-footer">
-    @include('theme/'. $theme. '/footer');
+    @include('theme/'. $theme. '/footer')
   </footer>
 
   <!-- Modal window for users with more than one role -->

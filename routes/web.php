@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -11,19 +13,25 @@
 |
 */
 
-/* The Laravel route built in 
+// The Laravel route built in 
 Route::get('/', function () {
     return view('welcome');
 });
-*/
 
-use Illuminate\Support\Facades\Route;
-Route::get('/','StartController@index')->name('start');
+Route::get('/home', 'Auth2\HomeController@index')->name('home');
 Route::get('auth/login','Auth2\LoginController@index')->name('login');
 Route::post('auth/login','Auth2\LoginController@login')->name('login-post');
 Route::get('auth/logout','Auth2\LoginController@logout')->name('logout');
 Route::resource('library/book','Library\BookController');
 Route::post('setsession', 'Auth2\SessionController@setSession')->name('setsession')->middleware('auth');
+
+/**
+ * Register the typical reset password routes for an application. 
+ */
+Route::get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
+Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
+Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
+Route::post('password/reset', 'Auth\ResetPasswordController@reset')->name('password.update');
 
 /*
 |--------------------------------------------------------------------------
@@ -35,7 +43,6 @@ Route::post('setsession', 'Auth2\SessionController@setSession')->name('setsessio
 |
 */ 
 Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['auth', 'admin']], function () {
-//Route::prefix('admin')->namespace('Admin')->middleware('auth')->group(function () {
      // Matches the "/admin/" URL
     Route::resource('','AdminController'); 
     Route::resource('permission','PermissionController');
