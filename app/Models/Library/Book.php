@@ -10,5 +10,4 @@ class Book extends Model
         'title', 'isbn', 'author','quantity','editorial','photo'
     ];
     
-    protected $guarded = ['id'];
 }

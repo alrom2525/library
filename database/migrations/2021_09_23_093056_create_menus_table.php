@@ -14,11 +14,11 @@ class CreateMenusTable extends Migration
     public function up()
     {
         Schema::create('menus', function (Blueprint $table) {
-            $table->increments('id');
-            $table->unsignedInteger('parent_menu')->default(0);
+            $table->bigIncrements('id');
+            $table->unsignedBigInteger('parent_menu')->default(0);
             $table->string('name',50);
             $table->string('url', 200);
-            $table->unsignedInteger('order')->default(0);
+            $table->unsignedBigInteger('order')->default(0);
             $table->string('icon', 100)->nullable();
             $table->timestamps();
             $table->charset = 'utf8mb4';

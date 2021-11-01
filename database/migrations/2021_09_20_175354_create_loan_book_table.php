@@ -14,10 +14,10 @@ class CreateLoanBookTable extends Migration
     public function up()
     {
         Schema::create('loan_book', function (Blueprint $table) {
-            $table->increments('id');
-            $table->unsignedInteger('user_id');
+            $table->bigIncrements('id');
+            $table->unsignedBigInteger('user_id');
             $table->foreign('user_id', 'fk_loan_book_user')->references('id')->on('users')->onDelete('restrict')->onUpdate('restrict');
-            $table->unsignedInteger('book_id');
+            $table->unsignedBigInteger('book_id');
             $table->foreign('book_id', 'fk_loan_book_book')->references('id')->on('books')->onDelete('restrict')->onUpdate('restrict');
             $table->date('date');
             $table->string('loaned_to', 100);

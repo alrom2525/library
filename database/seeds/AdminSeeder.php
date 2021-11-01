@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Hash;
 
 class AdminSeeder extends Seeder
 {
@@ -15,7 +16,7 @@ class AdminSeeder extends Seeder
         DB::table('users')->insert([
             'email' => 'admin@system.local',
             'name' => 'Administrator',
-            'password' => bcrypt('4dm1n1str4t0r'),
+            'password' => Hash::make('4dm1n1str4t0r'),
             'created_at' => Carbon::now()->format('Y-m-d H:i:s')
         ]);
         
@@ -27,7 +28,7 @@ class AdminSeeder extends Seeder
         DB::table('users')->insert([
             'email' => 'editor@system.local',
             'name' => 'Editor',
-            'password' => bcrypt('3d1t0rl0c4l'),
+            'password' => Hash::make('3d1t0rl0c4l'),
             'created_at' => Carbon::now()->format('Y-m-d H:i:s')
         ]);
 
