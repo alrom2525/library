@@ -9,6 +9,11 @@
         <a href="" class="h1"><b>Système</b></a>
       </div>
       <div class="card-body">
+        @if (session('status'))
+            <div class="alert alert-success" role="alert">
+                {{ session('status') }}
+            </div>
+        @endif
         <p class="login-box-msg">Connectez-vous <br>pour démarrer votre session</p>
         @if ($errors->any())
           <div class="alert bg-maroon alert-dismissible">
@@ -62,7 +67,7 @@
           </div>
 
           <p class="mt-3">
-            <a href="forgot-password.html">
+            <a href="{{ route('password.request') }}">
               Mot de passe oublié
             </a>
           </p>

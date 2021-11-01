@@ -2,6 +2,7 @@
 
 namespace App\Models\Auth;
 
+use Illuminate\Notifications\Notifiable;
 use App\Models\Admin\Role;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -9,7 +10,9 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 
 class User extends Authenticatable
-{
+{   
+    use Notifiable;
+    
     /**
      * The attributes that are mass assignable.
      *
@@ -64,8 +67,8 @@ class User extends Authenticatable
         }
     }
 
-    public function setPasswordAttribute($pass)
-    {
-        $this->attributes['password'] = Hash::make($pass); 
-    }
+    // public function setPasswordAttribute($pass)
+    // {
+    //     $this->attributes['password'] = Hash::make($pass); 
+    // }
 }
