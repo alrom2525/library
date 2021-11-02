@@ -19,7 +19,7 @@ class Admin
             return $next($request);
         }
         else {    
-            return redirect(route('start'))->with('message', 'Cette section est pour les administrateurs');
+            return redirect(route('home'))->with('message', 'Cette section est pour les administrateurs');
         }
         
     }

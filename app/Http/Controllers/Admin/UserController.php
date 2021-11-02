@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\ValidateUser;
 use App\Models\Admin\Role;
 use App\Models\Auth\User;
+use Illuminate\Support\Facades\Password;
 
 class UserController extends Controller
 {
@@ -40,10 +41,15 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(ValidateUser $request)
-    {
+    {   
+        
         $user = User::create($request->all());
         $user->roles()->sync($request->role_id);
+        if ($request->input('changepassword') == 1) {
+            Password::sendResetLink($request->only(['email']));
+        }
         return redirect('admin/user')->with('message', 'Utilisateur créé avec succès');
+        
     }
 
     /**
@@ -79,10 +85,13 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(ValidateUser $request, $id)
-    {
+    {   
         $user = User::findOrFail($id);
         $user->update(array_filter($request->all()));
         $user->roles()->sync($request->role_id);
+        if ($request->input('changepassword') == 1) {
+            Password::sendResetLink($request->only(['email']));
+        }
         return redirect('admin/user')->with('message', 'Utilisateur modifié avec succès');
     }
 

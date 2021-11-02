@@ -24,7 +24,7 @@ class ValidateUser extends FormRequest
     public function rules()
     {
         if($this->route('id')){
-            // Edition
+            // Creation process
             return [
                 'name' => 'required|max:50',
                 'email' => 'required|email|max:100|unique:users,email,' . $this->route('id'),
@@ -33,7 +33,7 @@ class ValidateUser extends FormRequest
                 'role_id' => 'required|array'
             ];
         } else {
-            // Creation process
+            // Edition
             return [
                 'name' => 'required|max:50',
                 'email' => 'required|email|max:100,' . $this->route('id'),

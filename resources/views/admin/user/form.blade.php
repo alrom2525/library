@@ -27,6 +27,19 @@
 </div>
 
 <div class="form-group row">
+  <div class="col-sm-2">
+  </div>
+
+  <div class="col-sm-4">  
+    <div class="custom-control custom-checkbox">
+      <input type="checkbox" class="custom-control-input custom-control-input-danger" id="changepassword" name="changepassword" value="1">
+      <label for="changepassword" class="custom-control-label">Imposer le changement du mot de passe</label>
+    </div>
+  </div>
+</div>
+
+
+<div class="form-group row">
   <label for="role" class="col-sm-2 col-form-label required">Sélectionnez le rôle</label>
   <div class="col-sm-4">
     <select name="role_id[]" id="role_id" class="form-control" multiple required>
